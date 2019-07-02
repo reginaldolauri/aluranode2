@@ -19,6 +19,15 @@ INSERT INTO usuarios (
 ) SELECT 'Gabriel Leite', 'gabriel@alura.com.br', '123' WHERE NOT EXISTS (SELECT * FROM usuarios WHERE email = 'gabriel@alura.com.br')
 `;
 
+const INSERIR_USUARIO_2 = 
+`
+INSERT INTO usuarios (
+    nome_completo, 
+    email,
+    senha
+) SELECT 'Reginaldo Lauri', 'reginaldo.lauri@gmail.com', '123' WHERE NOT EXISTS (SELECT * FROM usuarios WHERE email = 'reginaldo.lauri@gmail.com')
+`;
+
 const LIVROS_SCHEMA = 
 `
 CREATE TABLE IF NOT EXISTS livros (
@@ -52,6 +61,7 @@ bd.serialize(() => {
     bd.run("PRAGMA foreign_keys=ON");
     bd.run(USUARIOS_SCHEMA);
     bd.run(INSERIR_USUARIO_1);
+    bd.run(INSERIR_USUARIO_2);
     bd.run(LIVROS_SCHEMA);
     bd.run(INSERIR_LIVRO_1);
     bd.run(INSERIR_LIVRO_2);
